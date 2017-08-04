@@ -27,12 +27,9 @@
    You can use 'profile-tasks' like `production` and `development`
    to change parameters (like optimizations level of the cljs compiler)"
   []
-  (comp (speak)
-        
-        (cljs)
-        
+  (comp (cljs)
         (garden :styles-var 'pwm.styles/screen
-:output-to "css/garden.css")))
+                :output-to "css/garden.css")))
 
 (deftask run
   "The `run` task wraps the building of your application in some
@@ -41,8 +38,9 @@
   []
   (comp (serve)
         (watch)
+        (notify :visual true)
         (cljs-repl)
-        
+
         (cljs-devtools)
         (reload)
         (build)))
@@ -62,5 +60,3 @@
   []
   (comp (development)
         (run)))
-
-
