@@ -8,14 +8,14 @@
   (sort
    (set
     (concat
-     (map #(read-string (str "0." %)) (range 1 10))
+     (map #(/ % 10) (range 1 10))
      (for [num (range 1 10)
            denom [2 3 4 8]
            :when (> denom num)]
-       (float (/ num denom)))
+       (/ num denom))
      (range 1 11)))))
 
-(def widths (range 1 100 5))
+(def widths (range 5 100 5))
 
 (defstyles screen
   [:span.blink
