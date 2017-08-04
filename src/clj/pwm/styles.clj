@@ -4,16 +4,18 @@
             [garden.selectors :as sel]
             [clojure.string :as str]))
 
-(def frequencies
+(def freqs
   (sort
-   (concat
-    (for [num (range 1 10)
-          denom (range 2 11)
-          :when (> denom num)]
-      (/ num denom))
-    (range 1 11))))
+   (set
+    (concat
+     (map #(read-string (str "0." %)) (range 1 10))
+     (for [num (range 1 10)
+           denom [2 3 4 8]
+           :when (> denom num)]
+       (float (/ num denom)))
+     (range 1 11)))))
 
-(def widths (range 1 100))
+(def widths (range 1 100 5))
 
 (defstyles screen
   [:span.blink
@@ -21,8 +23,8 @@
     :width "1em"
     :margin "1em"}]
 
-  (for [f frequencies
-        w widths]
+  (for [w widths
+        f freqs]
     [(str/replace (format ".f%sw%s" f w) #"/" "-")
      {:animation-duration (str (float f) "s")
       :animation-name (str "blink" w)
