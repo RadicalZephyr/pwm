@@ -1,18 +1,13 @@
 (ns pwm.app
   (:require [reagent.core :as reagent :refer [atom]]))
 
-(defn some-component []
+(defn led [& classes]
+  [:span.blink {:class classes
+          :dangerouslySetInnerHTML {:__html "&nbsp;"}}])
+
+(defn root []
   [:div
-   [:h3 "I am a component!"]
-   [:p.someclass
-    "I have " [:strong "bold"]
-    [:span {:style {:color "red"}} " and red"]
-    " text."]])
-
-(defn calling-component []
-  [:div "Parent component"
-   [some-component]])
-
+   [led :f1w50]])
 (defn init []
-  (reagent/render-component [calling-component]
+  (reagent/render-component [root]
                             (.getElementById js/document "container")))
