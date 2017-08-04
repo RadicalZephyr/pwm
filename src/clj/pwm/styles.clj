@@ -20,8 +20,11 @@
 (defstyles screen
   [:span.blink
    {:display "inline-block"
-    :width "1em"
-    :margin "1em"}]
+    :border "1px black solid"
+    :height "2em"
+    :width "2em"
+    :margin "4%"
+    :box-shadow "1px 1px 3px rgba(0,0,0,0.2)"}]
 
   (for [w widths
         p periods]
@@ -34,6 +37,6 @@
     (at-keyframes (str "blink" w)
       [:from {:background-color "white"}]
       [(str (dec w) "%") {:background-color "white"}]
-      [(str w "%") {:background-color "black"}]
-      ["99%" {:background-color "black"}]
+      [(str w "%") {:background-color "green"}]
+      ["99%" {:background-color "green"}]
       [:to {:background-color "white"}])))
