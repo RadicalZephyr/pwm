@@ -29,7 +29,8 @@
    to change parameters (like optimizations level of the cljs compiler)"
   []
   (comp (cljs)
-        (garden :styles-var 'pwm.styles/screen
+        (garden :pretty-print true
+                :styles-var 'pwm.styles/screen
                 :output-to "css/garden.css")))
 
 (deftask run
@@ -40,8 +41,6 @@
   (comp (serve)
         (watch)
         (notify :visual true)
-        (cljs-repl)
-
         (cljs-devtools)
         (reload)
         (build)))
