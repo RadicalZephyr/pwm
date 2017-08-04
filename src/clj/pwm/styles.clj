@@ -4,7 +4,7 @@
             [garden.selectors :as sel]
             [clojure.string :as str]))
 
-(def freqs
+(def periods
   (sort
    (set
     (concat
@@ -24,9 +24,9 @@
     :margin "1em"}]
 
   (for [w widths
-        f freqs]
-    [(str/replace (format ".f%sw%s" f w) #"/" "-")
-     {:animation-duration (str (float f) "s")
+        p periods]
+    [(str/replace (format ".f%sw%s" p w) #"/" "-")
+     {:animation-duration (str (float p) "s")
       :animation-name (str "blink" w)
       :animation-iteration-count "infinite"}])
 
